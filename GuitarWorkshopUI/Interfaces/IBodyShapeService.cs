@@ -1,9 +1,12 @@
-﻿using GuitarWorkshopUI.DTO.BodyShape;
+﻿using GuitarWorkshopUI.DTO.GuitarParts;
 
 namespace GuitarWorkshopUI.Interfaces
 {
     public interface IBodyShapeService
     {
-        Task<BodyShapeDTO> GetAllBodyShape(); 
+        Task<List<BodyShapeDTO>> GetAllBodyShape();
+        Task CreateBodyShape(BodyShapeDTO bodyShapeDTO);
+        Task DeleteBodyShape(BodyShapeDTO bodyShapeDTO);
+        Task UpdateBodyShape(BodyShapeDTO bodyShapeDTO);
     }
 }

@@ -1,3 +1,4 @@
+using GuitarWorkshopUI.Extensions;
 using GuitarWorkshopUI.Interfaces;
 using GuitarWorkshopUI.Services;
 using GutarWorkshopDB.Models;
@@ -30,7 +31,7 @@ builder.Services.AddPooledDbContextFactory<GuitarWorkshopContext>(options =>
     options.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=GuitarWorkshop;");
 });
 
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 

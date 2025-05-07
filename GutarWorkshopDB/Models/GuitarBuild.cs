@@ -35,6 +35,8 @@ public partial class GuitarBuild
 
     public int UserId { get; set; }
 
+    public int StringId { get; set; }
+
     public decimal TotalPrice { get; set; }
 
     public virtual BodyShape BodyShape { get; set; }
@@ -56,6 +58,8 @@ public partial class GuitarBuild
     public virtual NeckScale NeckScale { get; set; }
 
     public virtual NeckShape NeckShape { get; set; }
+
+    public virtual StringType String { get; set; }
 
     public virtual WoodsType TopDeckMaterial { get; set; }
 

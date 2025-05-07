@@ -12,4 +12,6 @@ public partial class StringType
     public string StringName { get; set; }
 
     public decimal Price { get; set; }
+
+    public virtual ICollection<GuitarBuild> GuitarBuilds { get; set; } = new List<GuitarBuild>();
 }

@@ -103,6 +103,7 @@ public partial class GuitarWorkshopContext : DbContext
             entity.Property(e => e.NeckMaterialId).HasColumnName("neck_material_id");
             entity.Property(e => e.NeckScaleId).HasColumnName("neck_scale_id");
             entity.Property(e => e.NeckShapeId).HasColumnName("neck_shape_id");
+            entity.Property(e => e.StringId).HasColumnName("string_id");
             entity.Property(e => e.TopDeckMaterialId).HasColumnName("top_deck_material_id");
             entity.Property(e => e.TotalPrice)
                 .HasColumnType("money")
@@ -159,6 +160,11 @@ public partial class GuitarWorkshopContext : DbContext
                 .HasForeignKey(d => d.NeckShapeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("guitar_builds_neck_shape_id_fkey");
+
+            entity.HasOne(d => d.String).WithMany(p => p.GuitarBuilds)
+                .HasForeignKey(d => d.StringId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("guitar_builds_string_id_fkey");
 
             entity.HasOne(d => d.TopDeckMaterial).WithMany(p => p.GuitarBuildTopDeckMaterials)
                 .HasForeignKey(d => d.TopDeckMaterialId)

@@ -1,4 +1,4 @@
-﻿namespace GuitarWorkshopUI.DTO.BodyShape
+﻿namespace GuitarWorkshopUI.DTO.GuitarParts
 {
     public class BodyShapeDTO
     {

@@ -1,6 +1,14 @@
-﻿namespace GuitarWorkshopUI.Interfaces
+﻿using GuitarWorkshopUI.DTO;
+
+namespace GuitarWorkshopUI.Interfaces
 {
     public interface IGuitarBuildService
     {
+        Task<List<GuitarBuildDTO>> GetGuitarBuildsByUserId(int userId);
+        Task<List<GuitarBuildDTO>> GetAllGuitarBuilds();
+        Task<GuitarBuildDTO> GetGuitarBuild(int buildId);
+        Task CreateGuitarBuild(GuitarBuildDTO guitarBuildDTO);
+        Task DeleteGuitarBuild(GuitarBuildDTO guitarBuildDTO);
+        Task UpdateGuitarBuild(GuitarBuildDTO guitarBuildDTO);
     }
 }
