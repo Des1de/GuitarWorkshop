@@ -1,0 +1,34 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.NeckShape.CreateModel
+@{
+    ViewData["Title"] = "Create Neck Shape";
+}
+
+<h1>Create Neck Shape</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NeckShape.ShapeName" class="control-label"></label>
+                <input asp-for="NeckShape.ShapeName" class="form-control" />
+                <span asp-validation-for="NeckShape.ShapeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NeckShape.Price" class="control-label"></label>
+                <input asp-for="NeckShape.Price" class="form-control" />
+                <span asp-validation-for="NeckShape.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="GetAll">Back to List</a>
+</div>
+

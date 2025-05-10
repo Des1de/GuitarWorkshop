@@ -1,0 +1,39 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.BodyShape.GetAllModel
+
+@{
+    ViewData["Title"] = "Body Shapes";
+}
+
+<h1>Body Shapes</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>  <!-- Optional: Link to a Create page -->
+</p>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.BodyShapes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShapeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShapeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <div style="display:inline-flex">
+                        <a asp-page="./Edit" asp-route-id="@item.ShapeId" class="btn btn-sm">Edit</a> 
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.ShapeId">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

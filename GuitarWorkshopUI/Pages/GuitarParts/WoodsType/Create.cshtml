@@ -1,0 +1,39 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.WoodsType.CreateModel
+@{
+    ViewData["Title"] = "Create Woods Type";
+}
+
+<h1>Create Woods Type</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WoodsType.WoodName" class="control-label"></label>
+                <input asp-for="WoodsType.WoodName" class="form-control" />
+                <span asp-validation-for="WoodsType.WoodName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WoodsType.PartType">Bottom Deck Material:</label>
+                <select asp-for="WoodsType.PartType" asp-items="Model.GuitarPartOptions" class="form-control">
+                </select>
+                <span asp-validation-for="WoodsType.PartType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WoodsType.Price" class="control-label"></label>
+                <input asp-for="WoodsType.Price" class="form-control" />
+                <span asp-validation-for="WoodsType.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="GetAll">Back to List</a>
+</div>

@@ -1,0 +1,33 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.TuningMachine.CreateModel
+@{
+    ViewData["Title"] = "Create Tuning Machine";
+}
+
+<h1>Create Tuning Machine</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TuningMachine.MachineName" class="control-label"></label>
+                <input asp-for="TuningMachine.MachineName" class="form-control" />
+                <span asp-validation-for="TuningMachine.MachineName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TuningMachine.Price" class="control-label"></label>
+                <input asp-for="TuningMachine.Price" class="form-control" />
+                <span asp-validation-for="TuningMachine.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="GetAll">Back to List</a>
+</div>

@@ -11,6 +11,7 @@ namespace GuitarWorkshopUI.Extensions
                 .AddScoped<IFinishesService, FinishesService>()
                 .AddScoped<IFretNumberTypeService, FretNumberTypeService>()
                 .AddScoped<IGuitarBuildService, GuitarBuildService>()
+                .AddScoped<IGuitarColorService, GuitarColorService>()
                 .AddScoped<IHeadstockStyleService, HeadstockStyleService>()
                 .AddScoped<INeckScaleService, NeckScaleService>()
                 .AddScoped<INeckShapeService, NeckShapeService>()

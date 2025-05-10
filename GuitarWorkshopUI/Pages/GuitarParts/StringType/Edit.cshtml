@@ -1,0 +1,34 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.StringType.EditModel
+@{
+    ViewData["Title"] = "Edit String Type";
+}
+
+<h1>Edit String Type</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StringType.StringId" />
+            <div class="form-group">
+                <label asp-for="StringType.StringName" class="control-label"></label>
+                <input asp-for="StringType.StringName" class="form-control" />
+                <span asp-validation-for="StringType.StringName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StringType.Price" class="control-label"></label>
+                <input asp-for="StringType.Price" class="form-control" />
+                <span asp-validation-for="StringType.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="GetAll">Back to List</a>
+</div>

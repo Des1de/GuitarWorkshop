@@ -1,0 +1,41 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.WoodsType.GetAllModel
+@{
+    ViewData["Title"] = "Woods Types";
+}
+
+<h1>Woods Types</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>  <!-- Optional: Link to a Create page -->
+</p>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.WoodsTypes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WoodName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <div style="display:inline-flex">
+                        <a asp-page="./Edit" asp-route-id="@item.TypeId" class="btn btn-sm">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.TypeId">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

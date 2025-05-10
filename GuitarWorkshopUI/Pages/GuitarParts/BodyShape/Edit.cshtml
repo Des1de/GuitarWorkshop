@@ -1,0 +1,34 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.GuitarParts.BodyShape.EditModel
+@{
+    ViewData["Title"] = "Edit Body Shape";
+}
+
+<h1>Edit Body Shape</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BodyShape.ShapeId" />
+            <div class="form-group">
+                <label asp-for="BodyShape.ShapeName" class="control-label"></label>
+                <input asp-for="BodyShape.ShapeName" class="form-control" />
+                <span asp-validation-for="BodyShape.ShapeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BodyShape.Price" class="control-label"></label>
+                <input asp-for="BodyShape.Price" class="form-control" />
+                <span asp-validation-for="BodyShape.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="GetAll">Back to List</a>
+</div>
