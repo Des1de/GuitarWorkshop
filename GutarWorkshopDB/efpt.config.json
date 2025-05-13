@@ -35,6 +35,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "public.guitar_orders",
+         "ObjectType": 0
+      },
+      {
          "Name": "public.headstock_styles",
          "ObjectType": 0
       },
@@ -44,6 +48,14 @@
       },
       {
          "Name": "public.neck_shapes",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.repair_orders",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.repair_types",
          "ObjectType": 0
       },
       {

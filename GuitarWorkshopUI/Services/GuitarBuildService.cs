@@ -13,27 +13,30 @@ namespace GuitarWorkshopUI.Services
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task CreateGuitarBuild(GuitarBuildDTO guitarBuildDTO)
+        public async Task CreateGuitarBuild(CreateGuitarBuildDTO guitarBuildDTO)
         {
             using var context = await _dbContextFactory.CreateDbContextAsync();
-            await context.GuitarBuilds.AddAsync(new GuitarBuild
+
+            var guitarBuild = new GuitarBuild
             {
                 UserId = guitarBuildDTO.UserId,
-                BodyShapeId = guitarBuildDTO.BodyShape.ShapeId,
-                TopDeckMaterialId = guitarBuildDTO.TopDeckMaterial.TypeId,
-                BottomDeckMaterialId = guitarBuildDTO.BottomDeckMaterial.TypeId,
-                NeckMaterialId = guitarBuildDTO.NeckMaterial.TypeId,
-                NeckShapeId = guitarBuildDTO.NeckShape.ShapeId,
-                NeckScaleId = guitarBuildDTO.NeckScale.ScaleId,
-                FretNubmberTypeId = guitarBuildDTO.FretNubmberType.TypeId,
-                FingerboardMaterialId = guitarBuildDTO.FingerboardMaterial.TypeId,
-                HeadstockStyleId = guitarBuildDTO.HeadstockStyle.StyleId,
-                TuningMachineId = guitarBuildDTO.TuningMachine.MachineId,
-                ColorId = guitarBuildDTO.Color.ColorId,
-                FinishId = guitarBuildDTO.Finish.FinishId,
-                StringId = guitarBuildDTO.String.StringId,
+                BodyShapeId = guitarBuildDTO.BodyShapeId,
+                TopDeckMaterialId = guitarBuildDTO.TopDeckMaterialId,
+                BottomDeckMaterialId = guitarBuildDTO.BottomDeckMaterialId,
+                NeckMaterialId = guitarBuildDTO.NeckMaterialId,
+                NeckShapeId = guitarBuildDTO.NeckShapeId,
+                NeckScaleId = guitarBuildDTO.NeckScaleId,
+                FretNubmberTypeId = guitarBuildDTO.FretNubmberTypeId,
+                FingerboardMaterialId = guitarBuildDTO.FingerboardMaterialId,
+                HeadstockStyleId = guitarBuildDTO.HeadstockStyleId,
+                TuningMachineId = guitarBuildDTO.TuningMachineId,
+                ColorId = guitarBuildDTO.ColorId,
+                FinishId = guitarBuildDTO.FinishId,
+                StringId = guitarBuildDTO.StringId,
                 TotalPrice = guitarBuildDTO.TotalPrice
-            });
+            };
+
+            await context.GuitarBuilds.AddAsync(guitarBuild);
             await context.SaveChangesAsync();
         }
 

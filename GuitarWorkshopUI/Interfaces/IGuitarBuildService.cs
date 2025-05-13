@@ -7,7 +7,7 @@ namespace GuitarWorkshopUI.Interfaces
         Task<List<GuitarBuildDTO>> GetGuitarBuildsByUserId(int userId);
         Task<List<GuitarBuildDTO>> GetAllGuitarBuilds();
         Task<GuitarBuildDTO> GetGuitarBuild(int buildId);
-        Task CreateGuitarBuild(GuitarBuildDTO guitarBuildDTO);
+        Task CreateGuitarBuild(CreateGuitarBuildDTO guitarBuildDTO);
         Task DeleteGuitarBuild(GuitarBuildDTO guitarBuildDTO);
         Task UpdateGuitarBuild(GuitarBuildDTO guitarBuildDTO);
     }

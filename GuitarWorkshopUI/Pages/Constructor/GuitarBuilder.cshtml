@@ -9,94 +9,81 @@
 <form method="post">
 
     <div class="form-group">
-        <label asp-for="GuitarBuild.BodyShape">Body Shape:</label>
-        <select asp-for="GuitarBuild.BodyShape.ShapeId" asp-items="Model.BodyShapeOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.BodyShape" class="text-danger"></span>
+        <label asp-for="GuitarBuild.BodyShapeId">Body Shape:</label>
+        <select asp-for="GuitarBuild.BodyShapeId" asp-items="Model.BodyShapeOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.BodyShapeId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="GuitarBuild.BottomDeckMaterial">Bottom Deck Material:</label>
-        <select asp-for="GuitarBuild.BottomDeckMaterial.TypeId" asp-items="Model.BottomDeckMaterialOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.BottomDeckMaterial" class="text-danger"></span>
+        <label asp-for="GuitarBuild.BottomDeckMaterialId">Bottom Deck Material:</label>
+        <select asp-for="GuitarBuild.BottomDeckMaterialId" asp-items="Model.BottomDeckMaterialOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.BottomDeckMaterialId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="GuitarBuild.Color">Color:</label>
-        <select asp-for="GuitarBuild.Color.ColorId" asp-items="Model.ColorOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.Color" class="text-danger"></span>
+        <label asp-for="GuitarBuild.TopDeckMaterialId">Top Deck Material:</label>
+        <select asp-for="GuitarBuild.TopDeckMaterialId" asp-items="Model.TopDeckMaterialOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.TopDeckMaterialId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="GuitarBuild.FingerboardMaterial">Fingerboard Material:</label>
-        <select asp-for="GuitarBuild.FingerboardMaterial.TypeId" asp-items="Model.FingerboardMaterialOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.FingerboardMaterial" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.Finish">Finish:</label>
-        <select asp-for="GuitarBuild.Finish.FinishId" asp-items="Model.FinishOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.Finish" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.FretNubmberType">Fret Number Type:</label>
-        <select asp-for="GuitarBuild.FretNubmberType.TypeId" asp-items="Model.FretNubmberTypeOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.FretNubmberType" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.HeadstockStyle">Headstock Style:</label>
-        <select asp-for="GuitarBuild.HeadstockStyle.StyleId" asp-items="Model.HeadstockStyleOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.HeadstockStyle" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.NeckMaterial">Neck Material:</label>
-        <select asp-for="GuitarBuild.NeckMaterial.TypeId" asp-items="Model.NeckMaterialOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.NeckMaterial" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.NeckScale">Neck Scale:</label>
-        <select asp-for="GuitarBuild.NeckScale.ScaleId" asp-items="Model.NeckScaleOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.NeckScale" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.NeckShape">Neck Shape:</label>
-        <select asp-for="GuitarBuild.NeckShape.ShapeId" asp-items="Model.NeckShapeOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.NeckShape" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.String">String Type:</label>
-        <select asp-for="GuitarBuild.String.StringId" asp-items="Model.StringOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.String" class="text-danger"></span>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="GuitarBuild.TopDeckMaterial">Top Deck Material:</label>
-        <select asp-for="GuitarBuild.TopDeckMaterial.TypeId" asp-items="Model.TopDeckMaterialOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.TopDeckMaterial" class="text-danger"></span>
+        <label asp-for="GuitarBuild.NeckShapeId">Neck Shape:</label>
+        <select asp-for="GuitarBuild.NeckShapeId" asp-items="Model.NeckShapeOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.NeckShapeId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="GuitarBuild.TuningMachine">Tuning Machine:</label>
-        <select asp-for="GuitarBuild.TuningMachine.MachineId" asp-items="Model.TuningMachineOptions" class="form-control">
-        </select>
-        <span asp-validation-for="GuitarBuild.TuningMachine" class="text-danger"></span>
+        <label asp-for="GuitarBuild.NeckMaterialId">Neck Material:</label>
+        <select asp-for="GuitarBuild.NeckMaterialId" asp-items="Model.NeckMaterialOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.NeckMaterialId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.FingerboardMaterialId">Fingerboard Material:</label>
+        <select asp-for="GuitarBuild.FingerboardMaterialId" asp-items="Model.FingerboardMaterialOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.FingerboardMaterialId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.NeckScaleId">Neck Scale:</label>
+        <select asp-for="GuitarBuild.NeckScaleId" asp-items="Model.NeckScaleOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.NeckScaleId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.FretNubmberTypeId">Fret Number Type:</label>
+        <select asp-for="GuitarBuild.FretNubmberTypeId" asp-items="Model.FretNubmberTypeOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.FretNubmberTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.HeadstockStyleId">Headstock Style:</label>
+        <select asp-for="GuitarBuild.HeadstockStyleId" asp-items="Model.HeadstockStyleOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.HeadstockStyleId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.TuningMachineId">Tuning Machine:</label>
+        <select asp-for="GuitarBuild.TuningMachineId" asp-items="Model.TuningMachineOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.TuningMachineId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.ColorId">Color:</label>
+        <select asp-for="GuitarBuild.ColorId" asp-items="Model.ColorOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.ColorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.FinishId">Finish:</label>
+        <select asp-for="GuitarBuild.FinishId" asp-items="Model.FinishOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.FinishId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GuitarBuild.StringId">String Type:</label>
+        <select asp-for="GuitarBuild.StringId" asp-items="Model.StringOptions" class="form-control"></select>
+        <span asp-validation-for="GuitarBuild.StringId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Build Guitar</button>

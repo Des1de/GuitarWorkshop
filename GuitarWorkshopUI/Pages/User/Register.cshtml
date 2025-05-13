@@ -1,9 +1,32 @@
 ﻿@page
 @model GuitarWorkshopUI.Pages.User.RegisterModel
 @{
+    ViewData["Title"] = "Регистрация";
 }
-<form method="post">
-    <input asp-for="UserDTO.Login" type="text" name="login" placeholder="Логин" />
-    <input asp-for="UserDTO.Password" type="password" name="password" placeholder="Пароль" />
-    <button type="submit">Зарегестрироваться</button>
-</form>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Регистрация</h3>
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.Login" class="form-label">Логин</label>
+                        <input asp-for="UserDTO.Login" class="form-control" placeholder="Введите логин" required />
+                        <span asp-validation-for="UserDTO.Login" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.Password" class="form-label">Пароль</label>
+                        <input asp-for="UserDTO.Password" class="form-control" type="password" placeholder="Введите пароль" required />
+                        <span asp-validation-for="UserDTO.Password" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

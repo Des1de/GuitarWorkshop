@@ -25,6 +25,7 @@ namespace GuitarWorkshopUI.Services
             {
                 return new UserDTO
                 {
+                    UserId = user.UserId,
                     Login = login
                 };
             }

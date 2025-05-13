@@ -17,5 +17,9 @@ public partial class User
 
     public virtual ICollection<GuitarBuild> GuitarBuilds { get; set; } = new List<GuitarBuild>();
 
+    public virtual ICollection<GuitarOrder> GuitarOrders { get; set; } = new List<GuitarOrder>();
+
+    public virtual ICollection<RepairOrder> RepairOrders { get; set; } = new List<RepairOrder>();
+
     public virtual Role Role { get; set; }
 }

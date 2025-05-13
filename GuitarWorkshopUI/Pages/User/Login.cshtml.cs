@@ -25,7 +25,8 @@ namespace GuitarWorkshopUI.Pages.User
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Login)
+                    new Claim(ClaimTypes.Name, user.Login),
+                    new Claim("UserId", user.UserId.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuth");

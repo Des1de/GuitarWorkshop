@@ -1,0 +1,77 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Constructor.GuitarBuildsModel
+@{
+    ViewData["Title"] = "Guitar Builds";
+}
+
+<h2 class="text-center mb-4">Your Guitar Builds</h2>
+
+@if (Model.GuitarBuilds?.Any() == true)
+{
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @foreach (var build in Model.GuitarBuilds)
+        {
+            <div class="col">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Build #@build.BuildId</h5>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Body Shape:</strong> @build.BodyShape.ShapeName</li>
+                            <li><strong>Color:</strong> @build.Color.Color</li>
+                            <li><strong>Top Deck:</strong> @build.TopDeckMaterial.WoodName</li>
+                            <li><strong>Bottom Deck:</strong> @build.BottomDeckMaterial.WoodName</li>
+                            <li><strong>Neck Material:</strong> @build.NeckMaterial.WoodName</li>
+                            <li><strong>Fingerboard:</strong> @build.FingerboardMaterial.WoodName</li>
+                            <li><strong>Finish:</strong> @build.Finish.FinishName</li>
+                            <li><strong>Frets:</strong> @build.FretNubmberType.FretNumber</li>
+                            <li><strong>Neck Shape:</strong> @build.NeckShape.ShapeName</li>
+                            <li><strong>Neck Scale:</strong> @build.NeckScale.ScaleLength</li>
+                            <li><strong>Headstock Style:</strong> @build.HeadstockStyle.StyleName</li>
+                            <li><strong>Strings:</strong> @build.String.StringName</li>
+                            <li><strong>Tuning Machine:</strong> @build.TuningMachine.MachineName</li>
+                            <li><strong>Total Price:</strong> $@build.TotalPrice</li>
+                        </ul>
+
+                        <form method="post" asp-page-handler="Order" asp-route-id="@build.BuildId" class="d-inline">
+                            <button type="submit" class="btn btn-success">Order</button>
+                        </form>
+
+                        <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal_@build.BuildId">
+                            Delete
+                        </button>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal_@build.BuildId" tabindex="-1" aria-labelledby="deleteModalLabel_@build.BuildId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel_@build.BuildId">Confirm Deletion</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete Build #@build.BuildId?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <form method="post" asp-page-handler="Delete" asp-route-id="@build.BuildId">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-muted text-center">No guitar builds found.</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

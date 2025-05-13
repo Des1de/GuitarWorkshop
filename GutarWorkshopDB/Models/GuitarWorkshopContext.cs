@@ -23,11 +23,17 @@ public partial class GuitarWorkshopContext : DbContext
 
     public virtual DbSet<GuitarColor> GuitarColors { get; set; }
 
+    public virtual DbSet<GuitarOrder> GuitarOrders { get; set; }
+
     public virtual DbSet<HeadstockStyle> HeadstockStyles { get; set; }
 
     public virtual DbSet<NeckScale> NeckScales { get; set; }
 
     public virtual DbSet<NeckShape> NeckShapes { get; set; }
+
+    public virtual DbSet<RepairOrder> RepairOrders { get; set; }
+
+    public virtual DbSet<RepairType> RepairTypes { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -195,6 +201,35 @@ public partial class GuitarWorkshopContext : DbContext
                 .HasColumnName("color");
         });
 
+        modelBuilder.Entity<GuitarOrder>(entity =>
+        {
+            entity.HasKey(e => e.OrderId).HasName("guitar_orders_pkey");
+
+            entity.ToTable("guitar_orders");
+
+            entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.BuildId).HasColumnName("build_id");
+            entity.Property(e => e.OrderDateTime)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("order_date_time");
+            entity.Property(e => e.OrderStatus)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("order_status");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Build).WithMany(p => p.GuitarOrders)
+                .HasForeignKey(d => d.BuildId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("guitar_orders_build_id_fkey");
+
+            entity.HasOne(d => d.User).WithMany(p => p.GuitarOrders)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("guitar_orders_user_id_fkey");
+        });
+
         modelBuilder.Entity<HeadstockStyle>(entity =>
         {
             entity.HasKey(e => e.StyleId).HasName("headstock_styles_pkey");
@@ -238,6 +273,53 @@ public partial class GuitarWorkshopContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("shape_name");
+        });
+
+        modelBuilder.Entity<RepairOrder>(entity =>
+        {
+            entity.HasKey(e => e.OrderId).HasName("repair_orders_pkey");
+
+            entity.ToTable("repair_orders");
+
+            entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.OrderDateTime)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("order_date_time");
+            entity.Property(e => e.OrderStatus)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("order_status");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.ReapairTypeId).HasColumnName("reapair_type_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.ReapairType).WithMany(p => p.RepairOrders)
+                .HasForeignKey(d => d.ReapairTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("repair_orders_reapair_type_id_fkey");
+
+            entity.HasOne(d => d.User).WithMany(p => p.RepairOrders)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("repair_orders_user_id_fkey");
+        });
+
+        modelBuilder.Entity<RepairType>(entity =>
+        {
+            entity.HasKey(e => e.TypeId).HasName("repair_types_pkey");
+
+            entity.ToTable("repair_types");
+
+            entity.Property(e => e.TypeId).HasColumnName("type_id");
+            entity.Property(e => e.Description).HasColumnName("description");
+            entity.Property(e => e.PicturePath)
+                .HasMaxLength(255)
+                .HasColumnName("picture_path");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.RepairName)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("repair_name");
         });
 
         modelBuilder.Entity<Role>(entity =>

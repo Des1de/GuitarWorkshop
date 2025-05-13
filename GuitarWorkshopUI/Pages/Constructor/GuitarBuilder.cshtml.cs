@@ -21,7 +21,7 @@ namespace GuitarWorkshopUI.Pages.Constructor
         private readonly ITuningMachineService _tuningMachineService;
         private readonly IWoodsTypeService _woodsTypeService;
         [BindProperty]
-        public GuitarBuildDTO GuitarBuild { get; set; }
+        public CreateGuitarBuildDTO GuitarBuild { get; set; }
 
         public List<BodyShapeDTO> BodyShapes { get; set; }
         public List<WoodsTypeDTO> WoodsTypes { get; set; }
@@ -104,9 +104,15 @@ namespace GuitarWorkshopUI.Pages.Constructor
         }
         public async Task OnPostAsync()
         {
+            GuitarBuild.TotalPrice = CalculatePrice();
+            string userId = User.FindFirst("UserId")?.Value;
+            if (int.TryParse(userId, out int id))
+            {
+                GuitarBuild.UserId = id;
+            }
+            
             if (ModelState.IsValid)
             {
-                GuitarBuild.TotalPrice = CalculatePrice(); 
                 await _guitarBuildService.CreateGuitarBuild(GuitarBuild);
             }
                 

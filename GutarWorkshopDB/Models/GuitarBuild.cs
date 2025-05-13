@@ -51,6 +51,8 @@ public partial class GuitarBuild
 
     public virtual FretNumberType FretNubmberType { get; set; }
 
+    public virtual ICollection<GuitarOrder> GuitarOrders { get; set; } = new List<GuitarOrder>();
+
     public virtual HeadstockStyle HeadstockStyle { get; set; }
 
     public virtual WoodsType NeckMaterial { get; set; }
