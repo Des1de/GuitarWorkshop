@@ -1,4 +1,4 @@
-using GuitarWorkshopUI.DTO;
+using GuitarWorkshopUI.DTO.User;
 using GuitarWorkshopUI.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace GuitarWorkshopUI.Pages.User
 {
-    
+
     public class LoginModel : PageModel
     {
         private readonly IUserService _userService;
@@ -20,13 +20,14 @@ namespace GuitarWorkshopUI.Pages.User
         }
         public async Task<IActionResult> OnPostAsync(string username, string password)
         {
-            UserDTO? user = await _userService.LoginUser(username, password);
+            LoginUserDTO? user = await _userService.LoginUser(username, password);
             if (user is not null)
             {
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Login),
-                    new Claim("UserId", user.UserId.ToString())
+                    new Claim("UserId", user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuth");

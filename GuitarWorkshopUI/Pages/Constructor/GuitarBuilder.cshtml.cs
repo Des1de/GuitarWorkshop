@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GuitarWorkshopUI.Interfaces;
 using GuitarWorkshopUI.DTO.GuitarParts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuitarWorkshopUI.Pages.Constructor
 {
+    [Authorize(Roles = "User")]
     public class GuitarBuilderModel : PageModel
     {
         private readonly IGuitarBuildService _guitarBuildService;
@@ -102,52 +104,26 @@ namespace GuitarWorkshopUI.Pages.Constructor
             TopDeckMaterialOptions = new(WoodsTypes.Where(x => x.PartType == "TopDeck").ToList(), "TypeId", "WoodName");
             TuningMachineOptions = new(TuningMachines, "MachineId", "MachineName");
         }
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-            GuitarBuild.TotalPrice = CalculatePrice();
             string userId = User.FindFirst("UserId")?.Value;
             if (int.TryParse(userId, out int id))
             {
                 GuitarBuild.UserId = id;
             }
+            else return Unauthorized();
             
             if (ModelState.IsValid)
             {
                 await _guitarBuildService.CreateGuitarBuild(GuitarBuild);
+                return RedirectToPage("/Constructor/GuitarBuilds");
             }
                 
             else
             {
-                BodyShapes = await _bodyShapeService.GetAllBodyShape();
-                WoodsTypes = await _woodsTypeService.GetAllWoodsTypes();
-                GuitarColors = await _guitarColorService.GetAllGuitarColors();
-                Finishes = await _finishesService.GetAllFinishes();
-                FretNumberTypes = await _fretNumberTypeService.GetAllFretNumberTypes();
-                HeadstockStyles = await _headstockStyleService.GetAllHeadstockStyles();
-                NeckScales = await _neckScaleService.GetAllNeckScales();
-                NeckShapes = await _neckShapeService.GetAllNeckShapes();
-                StringTypes = await _stringTypeService.GetAllStringTypes();
-                TuningMachines = await _tuningMachineService.GetAllTuningMachines();
-
-                BodyShapeOptions = new(BodyShapes, "ShapeId", "ShapeName");
-                BottomDeckMaterialOptions = new(WoodsTypes.Where(x => x.PartType == "BottomDeck").ToList(), "TypeId", "WoodName");
-                ColorOptions = new(GuitarColors, "ColorId", "Color");
-                FingerboardMaterialOptions = new(WoodsTypes.Where(x => x.PartType == "Fingerboard").ToList(), "TypeId", "WoodName");
-                FinishOptions = new(await _finishesService.GetAllFinishes(), "FinishId", "FinishName");
-                FretNubmberTypeOptions = new(FretNumberTypes, "TypeId", "FretNumber");
-                HeadstockStyleOptions = new(HeadstockStyles, "StyleId", "StyleName");
-                NeckMaterialOptions = new(WoodsTypes.Where(x => x.PartType == "Neck").ToList(), "TypeId", "WoodName");
-                NeckScaleOptions = new(NeckScales, "ScaleId", "ScaleLength");
-                NeckShapeOptions = new(NeckShapes, "ShapeId", "ShapeName");
-                StringOptions = new(StringTypes, "StringId", "StringName");
-                TopDeckMaterialOptions = new(WoodsTypes.Where(x => x.PartType == "TopDeck").ToList(), "TypeId", "WoodName");
-                TuningMachineOptions = new(TuningMachines, "MachineId", "MachineName");
+                return Page();
             }
         }
 
-        private decimal CalculatePrice()
-        {
-            return 0; 
-        }
     }
 }

@@ -1,0 +1,46 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Manager.Guitar.DoneOrdersModel
+@{
+    ViewData["Title"] = "Completed Orders";
+}
+
+<h2 class="text-center mb-4">Completed Orders</h2>
+
+@if (!Model.DoneOrders.Any())
+{
+    <p class="text-muted text-center">There are no completed orders.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Build ID</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.DoneOrders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.UserId</td>
+                        <td>@order.BuildId</td>
+                        <td>@order.OrderDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@order.Price.ToString("C")</td>
+                        <td>@order.DeliveryAddress</td>
+                        <td>@order.PhoneNumber</td>
+                        <td>@order.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

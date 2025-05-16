@@ -209,6 +209,14 @@ public partial class GuitarWorkshopContext : DbContext
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             entity.Property(e => e.BuildId).HasColumnName("build_id");
+            entity.Property(e => e.DeliveryAddress)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("delivery_address");
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("email");
             entity.Property(e => e.OrderDateTime)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("order_date_time");
@@ -216,6 +224,10 @@ public partial class GuitarWorkshopContext : DbContext
                 .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("order_status");
+            entity.Property(e => e.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("phone_number");
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -374,12 +386,27 @@ public partial class GuitarWorkshopContext : DbContext
             entity.ToTable("users");
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.DeliveryAddress)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("delivery_address");
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("email");
+            entity.Property(e => e.IsBlocked)
+                .HasDefaultValue(false)
+                .HasColumnName("is_blocked");
             entity.Property(e => e.Login)
                 .HasMaxLength(100)
                 .HasColumnName("login");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(255)
                 .HasColumnName("password_hash");
+            entity.Property(e => e.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("phone_number");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)

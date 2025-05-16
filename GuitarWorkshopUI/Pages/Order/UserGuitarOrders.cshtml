@@ -1,0 +1,82 @@
+﻿@page
+@using GuitarWorkshopUI.Constants
+@model GuitarWorkshopUI.Pages.Order.UserGuitarOrdersModel
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<h2 class="text-center mb-4">My Orders</h2>
+
+@if (Model.UserOrders == null || !Model.UserOrders.Any())
+{
+    <p class="text-muted text-center">You don't have any orders yet.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle text-center">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Build ID</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Delivery Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.UserOrders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.BuildId</td>
+                        <td>@order.OrderDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@order.OrderStatus</td>
+                        <td>@order.Price.ToString("C")</td>
+                        <td>@order.DeliveryAddress</td>
+                        <td>@order.PhoneNumber</td>
+                        <td>@order.Email</td>
+                        <td>
+                            @if (order.OrderStatus == OrderStatuses.Pending)
+                            {
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal_@order.OrderId">
+                                    Cancel
+                                </button>
+
+                                <!-- Cancel Confirmation Modal -->
+                                <div class="modal fade" id="cancelModal_@order.OrderId" tabindex="-1" aria-labelledby="cancelModalLabel_@order.OrderId" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="cancelModalLabel_@order.OrderId">Confirm Cancellation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to cancel Order #@order.OrderId?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <form method="post" asp-page-handler="Cancel" asp-route-orderId="@order.OrderId" class="d-inline">
+                                                    <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal -->
+                            }
+                            else
+                            {
+                                <span class="text-muted">Not cancellable</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

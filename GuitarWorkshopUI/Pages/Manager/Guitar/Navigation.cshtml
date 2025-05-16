@@ -1,0 +1,22 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Manager.Guitar.NavigationModel
+@{
+    ViewData["Title"] = "Orders Dashboard";
+}
+
+<h2 class="text-center mb-4">Orders Dashboard</h2>
+
+<div class="d-flex justify-content-center gap-4">
+    <a asp-page="./PendingOrders" class="btn btn-outline-primary btn-lg">
+        Pending Orders
+    </a>
+    <a asp-page="./ApprovedOrders" class="btn btn-outline-success btn-lg">
+        Approved Orders
+    </a>
+    <a asp-page="./DoneOrders" class="btn btn-outline-secondary btn-lg">
+        Completed Orders
+    </a>
+    <a asp-page="./CancelledOrders" class="btn btn-outline-danger btn-lg">
+        Cancelled Orders
+    </a>
+</div>

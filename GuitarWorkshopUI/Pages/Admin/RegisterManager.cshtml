@@ -1,0 +1,38 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Admin.RegisterManagerModel
+@{
+    ViewData["Title"] = "Register New Manager";
+}
+
+<h2 class="mb-4">Register New Manager</h2>
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label asp-for="NewManager.Login" class="form-label"></label>
+        <input asp-for="NewManager.Login" class="form-control" />
+        <span asp-validation-for="NewManager.Login" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewManager.Password" class="form-label"></label>
+        <input asp-for="NewManager.Password" class="form-control" />
+        <span asp-validation-for="NewManager.Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewManager.RepeatPassword" class="form-label"></label>
+        <input asp-for="NewManager.RepeatPassword" class="form-control" />
+        <span asp-validation-for="NewManager.RepeatPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register Manager</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

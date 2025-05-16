@@ -1,10 +1,12 @@
 using GuitarWorkshopUI.DTO;
 using GuitarWorkshopUI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GuitarWorkshopUI.Pages.Constructor
 {
+    [Authorize(Roles = "User")]
     public class GuitarBuildsModel : PageModel
     {
         private readonly IGuitarBuildService _guitarBuildService;
@@ -27,16 +29,14 @@ namespace GuitarWorkshopUI.Pages.Constructor
 
         public IActionResult OnPostOrder(int id)
         {
-            // TODO: Add logic to place an order
-            // Example: OrderService.PlaceOrder(id);
-            return RedirectToPage(); // Refresh page
+            return RedirectToPage("/Order/CreateGuitarOrder", new { buildId = id }); 
         }
 
-        public IActionResult OnPostDelete(int id)
+        public async Task<IActionResult> OnPostDelete(int id)
         {
-            // TODO: Add logic to delete a build
-            // Example: GuitarBuildService.DeleteBuild(id);
-            return RedirectToPage(); // Refresh page
+            var guitarBuild = await _guitarBuildService.GetGuitarBuild(id);
+            await _guitarBuildService.DeleteGuitarBuild(guitarBuild);
+            return RedirectToPage(); 
         }
     }
 }

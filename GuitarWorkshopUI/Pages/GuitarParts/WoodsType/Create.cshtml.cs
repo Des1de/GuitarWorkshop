@@ -1,11 +1,13 @@
 using GuitarWorkshopUI.DTO.GuitarParts;
 using GuitarWorkshopUI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GuitarWorkshopUI.Pages.GuitarParts.WoodsType
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly IWoodsTypeService _woodsTypeService;

@@ -1,0 +1,106 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Manager.Guitar.PendingOrdersModel
+@{
+    ViewData["Title"] = "Pending Orders";
+}
+
+<h2 class="text-center mb-4">Pending Orders</h2>
+
+@if (!Model.PendingOrders.Any())
+{
+    <p class="text-muted text-center">There are no pending orders at the moment.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle text-center">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Build ID</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.PendingOrders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.UserId</td>
+                        <td>@order.BuildId</td>
+                        <td>@order.OrderDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@order.Price.ToString("C")</td>
+                        <td>@order.DeliveryAddress</td>
+                        <td>@order.PhoneNumber</td>
+                        <td>@order.Email</td>
+                        <td>
+                            <!-- Approve Button triggers modal -->
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#approveModal_@order.OrderId">
+                                Approve
+                            </button>
+
+                            <!-- Cancel Button triggers modal -->
+                            <button type="button" class="btn btn-sm btn-danger ms-1" data-bs-toggle="modal" data-bs-target="#cancelModal_@order.OrderId">
+                                Cancel
+                            </button>
+
+                            <!-- Approve Confirmation Modal -->
+                            <div class="modal fade" id="approveModal_@order.OrderId" tabindex="-1" aria-labelledby="approveModalLabel_@order.OrderId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="approveModalLabel_@order.OrderId">Confirm Approval</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to approve Order #@order.OrderId?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <form method="post" asp-page-handler="Approve" asp-route-id="@order.OrderId" class="d-inline">
+                                                <button type="submit" class="btn btn-success">Yes, Approve</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cancel Modal -->
+                            <div class="modal fade" id="cancelModal_@order.OrderId" tabindex="-1" aria-labelledby="cancelModalLabel_@order.OrderId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="cancelModalLabel_@order.OrderId">Confirm Cancellation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to cancel Order #@order.OrderId?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <form method="post" asp-page-handler="Cancel" asp-route-id="@order.OrderId">
+                                                <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+}

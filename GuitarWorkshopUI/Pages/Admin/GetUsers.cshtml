@@ -1,0 +1,100 @@
+﻿@page
+@model GuitarWorkshopUI.Pages.Admin.GetUsersModel
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h2 class="text-center mb-4">User Management</h2>
+
+<form method="get" class="row justify-content-center mb-4">
+    <div class="col-md-4">
+        <input type="text" name="SearchLogin" value="@Model.SearchLogin"
+               class="form-control" placeholder="Search by login..." />
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+</form>
+
+@if (Model.Users.Any())
+{
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Login</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @if (user.IsBlocked)
+                        {
+                            <span class="badge bg-danger">Blocked</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm @(user.IsBlocked ? "btn-success" : "btn-warning")"
+                                data-bs-toggle="modal" data-bs-target="#blockModal_@user.UserId">
+                            @(user.IsBlocked ? "Unblock" : "Block")
+                        </button>
+
+                        <!-- Block/Unblock Confirmation Modal -->
+                        <div class="modal fade" id="blockModal_@user.UserId" tabindex="-1"
+                             aria-labelledby="blockModalLabel_@user.UserId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="blockModalLabel_@user.UserId">
+                                            Confirm @(user.IsBlocked ? "Unblock" : "Block")
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to @(user.IsBlocked ? "unblock" : "block")
+                                        user <strong>@user.Login</strong>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <form method="post" asp-page-handler="ToggleBlock" asp-route-id="@user.UserId" class="d-inline">
+                                            <button type="submit" class="btn @(user.IsBlocked ? "btn-success" : "btn-warning")">
+                                                Yes, @(user.IsBlocked ? "Unblock" : "Block")
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted text-center">No users found.</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

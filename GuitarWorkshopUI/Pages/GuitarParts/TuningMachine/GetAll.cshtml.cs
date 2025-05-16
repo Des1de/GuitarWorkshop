@@ -1,10 +1,12 @@
 using GuitarWorkshopUI.DTO.GuitarParts;
 using GuitarWorkshopUI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GuitarWorkshopUI.Pages.GuitarParts.TuningMachine
 {
+    [Authorize(Roles = "Admin")]
     public class GetAllModel : PageModel
     {
         private readonly ITuningMachineService _tuningMachineService;

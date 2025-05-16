@@ -18,7 +18,8 @@ namespace GuitarWorkshopUI.Extensions
                 .AddScoped<IStringTypeService, StringTypeService>()
                 .AddScoped<ITuningMachineService, TuningMachineService>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<IWoodsTypeService, WoodsTypeService>();
+                .AddScoped<IWoodsTypeService, WoodsTypeService>()
+                .AddScoped<IGuitarOrderService, GuitarOrderService>();
         }
     }
 }

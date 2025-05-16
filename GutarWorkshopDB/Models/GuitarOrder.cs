@@ -19,6 +19,12 @@ public partial class GuitarOrder
 
     public string OrderStatus { get; set; }
 
+    public string PhoneNumber { get; set; }
+
+    public string DeliveryAddress { get; set; }
+
+    public string Email { get; set; }
+
     public virtual GuitarBuild Build { get; set; }
 
     public virtual User User { get; set; }

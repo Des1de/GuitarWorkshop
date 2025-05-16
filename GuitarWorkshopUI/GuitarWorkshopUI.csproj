@@ -15,4 +15,8 @@
     <ProjectReference Include="..\GutarWorkshopDB\GutarWorkshopDB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Manager\Repair\" />
+  </ItemGroup>
+
 </Project>

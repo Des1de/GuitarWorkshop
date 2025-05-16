@@ -1,26 +1,52 @@
 ﻿@page
 @model GuitarWorkshopUI.Pages.User.RegisterModel
 @{
-    ViewData["Title"] = "Регистрация";
+    ViewData["Title"] = "Register";
 }
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-6 col-lg-5">
         <div class="card shadow-lg">
             <div class="card-body">
-                <h3 class="card-title text-center mb-4">Регистрация</h3>
+                <h3 class="card-title text-center mb-4">Create Account</h3>
                 <form method="post">
                     <div class="mb-3">
-                        <label asp-for="UserDTO.Login" class="form-label">Логин</label>
-                        <input asp-for="UserDTO.Login" class="form-control" placeholder="Введите логин" required />
+                        <label asp-for="UserDTO.Login" class="form-label">Login</label>
+                        <input asp-for="UserDTO.Login" class="form-control" placeholder="Enter login" required />
                         <span asp-validation-for="UserDTO.Login" class="text-danger"></span>
                     </div>
+
                     <div class="mb-3">
-                        <label asp-for="UserDTO.Password" class="form-label">Пароль</label>
-                        <input asp-for="UserDTO.Password" class="form-control" type="password" placeholder="Введите пароль" required />
+                        <label asp-for="UserDTO.Password" class="form-label">Password</label>
+                        <input asp-for="UserDTO.Password" type="password" class="form-control" placeholder="Enter password" required />
                         <span asp-validation-for="UserDTO.Password" class="text-danger"></span>
                     </div>
-                    <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.RepeatPassword" class="form-label">Repeat Password</label>
+                        <input asp-for="UserDTO.RepeatPassword" type="password" class="form-control" placeholder="Repeat password" required />
+                        <span asp-validation-for="UserDTO.RepeatPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.DeliveryAddress" class="form-label">Delivery Address</label>
+                        <input asp-for="UserDTO.DeliveryAddress" class="form-control" placeholder="Enter delivery address" required />
+                        <span asp-validation-for="UserDTO.DeliveryAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.PhoneNumber" class="form-label">Phone Number</label>
+                        <input asp-for="UserDTO.PhoneNumber" class="form-control" placeholder="Enter phone number" required />
+                        <span asp-validation-for="UserDTO.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserDTO.Email" class="form-label">Email</label>
+                        <input asp-for="UserDTO.Email" class="form-control" placeholder="Enter email" required />
+                        <span asp-validation-for="UserDTO.Email" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Register</button>
                 </form>
             </div>
         </div>

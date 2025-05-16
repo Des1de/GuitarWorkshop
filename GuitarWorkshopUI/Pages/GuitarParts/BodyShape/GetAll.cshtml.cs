@@ -1,11 +1,13 @@
 using GuitarWorkshopUI.DTO.GuitarParts;
 using GuitarWorkshopUI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace GuitarWorkshopUI.Pages.GuitarParts.BodyShape
 {
+    [Authorize(Roles = "Admin")]
     public class GetAllModel : PageModel
     {
         private readonly IBodyShapeService _bodyShapeService;

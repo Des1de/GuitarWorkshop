@@ -1,0 +1,40 @@
+﻿@page "{buildId:int}"
+@model GuitarWorkshopUI.Pages.Order.CreateGuitarOrderModel
+@{
+}
+<h2>Place Your Order</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="GuitarOrder.BuildId" />
+    <input type="hidden" asp-for="GuitarOrder.OrderDateTime" />
+    <input type="hidden" asp-for="GuitarOrder.Price" />
+    <input type="hidden" asp-for="GuitarOrder.OrderStatus" />
+
+    <div class="mb-3">
+        <label asp-for="GuitarOrder.DeliveryAddress" class="form-label">Delivery Address</label>
+        <input asp-for="GuitarOrder.DeliveryAddress" class="form-control" />
+        <span asp-validation-for="GuitarOrder.DeliveryAddress" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GuitarOrder.PhoneNumber" class="form-label">Phone Number</label>
+        <input asp-for="GuitarOrder.PhoneNumber" class="form-control" />
+        <span asp-validation-for="GuitarOrder.PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GuitarOrder.Email" class="form-label">Email</label>
+        <input asp-for="GuitarOrder.Email" class="form-control" />
+        <span asp-validation-for="GuitarOrder.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <strong>Total Price: @Model.GuitarOrder.Price.ToString("C")</strong>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Order</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

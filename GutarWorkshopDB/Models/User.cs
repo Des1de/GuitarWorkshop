@@ -15,6 +15,14 @@ public partial class User
 
     public int? RoleId { get; set; }
 
+    public bool IsBlocked { get; set; }
+
+    public string PhoneNumber { get; set; }
+
+    public string DeliveryAddress { get; set; }
+
+    public string Email { get; set; }
+
     public virtual ICollection<GuitarBuild> GuitarBuilds { get; set; } = new List<GuitarBuild>();
 
     public virtual ICollection<GuitarOrder> GuitarOrders { get; set; } = new List<GuitarOrder>();
